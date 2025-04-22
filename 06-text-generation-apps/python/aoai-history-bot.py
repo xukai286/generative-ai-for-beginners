@@ -3,13 +3,13 @@ import os
 from dotenv import load_dotenv
 
 # load environment variables from .env file
-load_dotenv()
+load_dotenv("/etc/.env")
 
 # configure Azure OpenAI service client 
 client = AzureOpenAI(
   azure_endpoint = os.environ["AZURE_OPENAI_ENDPOINT"], 
   api_key=os.environ['AZURE_OPENAI_API_KEY'],  
-  api_version = "2023-10-01-preview"
+  api_version = "2025-03-01-preview"
   )
 
 deployment=os.environ['AZURE_OPENAI_DEPLOYMENT']
@@ -26,7 +26,7 @@ Provide answer for the question: {question}
 """
 messages = [{"role": "user", "content": prompt}]  
 # make completion
-completion = client.chat.completions.create(model=deployment, messages=messages, temperature=0)
+completion = client.chat.completions.create(model=deployment, messages=messages, temperature=0.7,top_p=0.99)
 
 # print response
 print(completion.choices[0].message.content)
