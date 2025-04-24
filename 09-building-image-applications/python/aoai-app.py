@@ -6,19 +6,19 @@ import dotenv
 import json
 
 # import dotenv
-dotenv.load_dotenv()
+dotenv.load_dotenv("/etc/.env")
 
  
 
 # Assign the API version (DALL-E is currently supported for the 2023-06-01-preview API version only)
 client = AzureOpenAI(
-  api_key=os.environ['AZURE_OPENAI_API_KEY'],  # this is also the default, it can be omitted
-  api_version = "2023-12-01-preview",
-  azure_endpoint=os.environ['AZURE_OPENAI_ENDPOINT'] 
+  api_key=os.environ['AZURE_OPENAI_DALL_API_KEY'],  # this is also the default, it can be omitted
+  api_version = "2024-02-01",
+  azure_endpoint=os.environ['AZURE_OPENAI_DALL_ENDPOINT'] 
   )
 
-model = os.environ['AZURE_OPENAI_DEPLOYMENT']
-
+#model = os.environ['AZURE_OPENAI_DEPLOYMENT']
+model = "dall-e-3"
 
 try:
     # Create an image by using the image generation API
@@ -33,6 +33,8 @@ try:
     generation_response = json.loads(result.model_dump_json())
     # Set the directory for the stored image
     image_dir = os.path.join(os.curdir, 'images')
+
+    print(f"image_dir is: {image_dir}")
 
     # If the directory doesn't exist, create it
     if not os.path.isdir(image_dir):
