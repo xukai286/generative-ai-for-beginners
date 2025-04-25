@@ -24,6 +24,7 @@ def get_current_time(timezone: str) -> dict:
 
 @mcp.tool()
 def get_data_from_api(api_url: str) -> str:
+    # Fetch data from a given API URL.
     """Fetch data from a given API URL."""
     import requests
 
