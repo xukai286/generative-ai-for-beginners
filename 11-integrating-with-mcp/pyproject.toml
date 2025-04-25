@@ -1,0 +1,19 @@
+[project]
+name = "mcp_server_time_kk"
+version = "0.1.0"
+description = "MCP Time Server - Time and timezone conversion functionality for MCP"
+authors = [
+    { name = "KK Xu", email = "xukai286@hotmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp",  # 这里添加 mcp 依赖
+]
+
+[project.scripts]
+mcp-server-time = "mcp_server_time:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
